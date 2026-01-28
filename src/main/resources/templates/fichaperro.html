@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCan Ficha Perro</title>
+</head>
+<body>
+<h1>Ficha Perro</h1>
+
+<div style="display: flex; gap: 30px; align-items: flex-start;">
+
+    <div style="flex: 1; min-width: 250px;">
+        <h2>Datos Generales</h2>
+        <ul style="list-style: none; padding: 0; line-height: 1;">
+            <li><strong>ID:</strong> <span th:text="${FichaPerro.id}"></span></li>
+            <li><strong>NOMBRE:</strong> <span th:text="${FichaPerro.nombre}"></span></li>
+            <li><strong>RAZA:</strong> <span th:text="${FichaPerro.raza}"></span></li>
+            <li><strong>EDAD:</strong> <span th:text="${FichaPerro.edad}"></span></li>
+            <li><strong>SEXO:</strong> <span th:text="${FichaPerro.sexo}"></span></li>
+            <li><strong>PESO:</strong> <span th:text="${FichaPerro.peso}"></span></li>
+            <li><strong>ESTADO:</strong> <span th:text="${FichaPerro.estado}"></span></li>
+            <li><strong>FECHA DE INGRESO:</strong> <span th:text="${FichaPerro.fechaIngreso}"></span></li>
+        </ul>
+    </div>
+
+    <div style="flex: 2;">
+        <h2>Historial Clínico</h2>
+        <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead style="background-color: #f2f2f2;">
+            <tr>
+                <th>ID</th>
+                <th>CAUSA/MOTIVO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>FECHA CONSULTA</th>
+                <th>VETERINARIO</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="HCPerro : ${HC}">
+                <td th:text="${HCPerro.id}"></td>
+                <td th:text="${HCPerro.causa}"></td>
+                <td th:text="${HCPerro.descripcion}"></td>
+                <td th:text="${HCPerro.fecha}"></td>
+                <td th:text="${HCPerro.veterinario}"></td>
+                <td><button>Seleccionar</button></td> </tr>
+            </tbody>
+        </table><br><br><br>
+
+        <h2>Consulta Clínica</h2>
+        <form name="formhc" th:action="@{|/fichaperro/${FichaPerro.id}|}" method="post">
+            <label for="veterinario">Veterinario: </label>
+            <input type="text" id="veterinario" name="veterinario"><br><br>
+            <label for="causa">Causa/Motivo: </label>
+            <select id="causa" name="causa">
+                <option value=""></option>
+                <option th:each="ca:${causa}" th:value="${ca}" th:text="${ca}"></option>
+            </select>
+            <br><br>
+            <label for="descripcion">Descripción: </label><br>
+            <textarea rows="4" cols="60" id="descripcion" name="descripcion"></textarea><br><br>
+            <label for="fecha">Fecha Consulta: </label>
+            <input type="datetime-local" id="fecha" name="fecha"><br><br>
+            <button>💾 Guardar</button>
+
+            <button type="button">❌ Eliminar Consulta</button>
+            <input type="reset" value="⚪️ Limpiar Formulario">
+        </form><br><br>
+
+    </div>
+</div>
+<a th:href="@{/perros}"><input type="button" value="⬅️ Atrás"></a>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCan Perros</title>
+</head>
+<body>
+<div>
+    <h1>PERROS</h1>
+</div>
+<div>
+    <form name="info_perros" action="/perros" method="get">
+        <h3><a href="/formperro">➕ Añadir Perro</a></h3>
+        <label for="nombre" th:text="#{nombre}"></label>
+        <input type="text" id="nombre" name="nombre">
+        <br>
+        <label for="estado" th:text="#{estado}"></label>
+        <select id="estado" name="estado">
+            <option value=""></option>
+            <option th:each="est:${estados}" th:value="${est}" th:text="${est}"></option>
+        </select>
+        <input type="submit" value="🔎 Buscar">
+
+    </form>
+</div>
+<br>
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>RAZA</th>
+            <th>EDAD</th>
+            <th>SEXO</th>
+            <th>PESO</th>
+            <th>ESTADO</th>
+            <th>FECHA DE INGRESO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Perro : ${Perros}">
+            <td th:text="${Perro.id}"></td>
+            <td th:text="${Perro.nombre}"></td>
+            <td th:text="${Perro.raza}"></td>
+            <td th:text="${Perro.edad}"></td>
+            <td th:text="${Perro.sexo}"></td>
+            <td th:text="${Perro.peso}"></td>
+            <td th:text="${Perro.estado}"></td>
+            <td th:text="${Perro.fechaIngreso}"></td>
+            <td><a th:href="@{|/fichaperro/${Perro.id}|}">ficha</a></td>
+            <td><a th:href="@{|/fichaperro/${Perro.id}|}">adoptar</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
