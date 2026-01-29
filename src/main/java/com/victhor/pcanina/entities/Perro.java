@@ -1,6 +1,6 @@
 package com.victhor.pcanina.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.victhor.pcanina.common.EstadoPerro;
 import com.victhor.pcanina.common.SexoPerro;
@@ -42,6 +42,6 @@ public class Perro {
     @Column(name="estado")
     private EstadoPerro estado;
     @Column(name="fecha_ingreso")
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
 }

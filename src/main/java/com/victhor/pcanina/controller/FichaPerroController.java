@@ -37,7 +37,8 @@ public class FichaPerroController {
 
         model.addAttribute("FichaPerro", perro);
         model.addAttribute("HC", listHC);
-        model.addAttribute("causa", CausaHC.values());
+        model.addAttribute("formHC", new HistorialClinico());
+        model.addAttribute("causas", CausaHC.values());
 
 
         return "fichaperro";
@@ -52,7 +53,7 @@ public class FichaPerroController {
         hc.setPerro(perro);
 
         hcRepository.save(hc);
-        log.debug("["+hc.toString()+"]" );
+        log.debug("[" + hc.toString() + "]" );
 
         return "redirect:/fichaperro/" + id;
     }

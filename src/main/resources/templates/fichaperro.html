@@ -20,9 +20,11 @@
             <li><strong>SEXO:</strong> <span th:text="${FichaPerro.sexo}"></span></li>
             <li><strong>PESO:</strong> <span th:text="${FichaPerro.peso}"></span></li>
             <li><strong>ESTADO:</strong> <span th:text="${FichaPerro.estado}"></span></li>
-            <li><strong>FECHA DE INGRESO:</strong> <span th:text="${FichaPerro.fechaIngreso}"></span></li>
+            <li><strong>FECHA DE INGRESO:</strong> <span th:text="${FichaPerro.fechaIngreso}"></span></li><br>
+            <li><a th:href="@{|/formperro/${FichaPerro.id}|}"><input type="button" value="Modificar"></a></li>
         </ul>
     </div>
+
 
     <div style="flex: 2;">
         <h2>Historial Clínico</h2>
@@ -43,24 +45,35 @@
                 <td th:text="${HCPerro.descripcion}"></td>
                 <td th:text="${HCPerro.fecha}"></td>
                 <td th:text="${HCPerro.veterinario}"></td>
-                <td><button>Seleccionar</button></td> </tr>
+                <td><a th:href="@{|/fichaperro/${FichaPerro.id}|}"><input type="button" value="Seleccionar"></a></td> </tr>
             </tbody>
         </table><br><br><br>
 
         <h2>Consulta Clínica</h2>
-        <form name="formhc" th:action="@{|/fichaperro/${FichaPerro.id}|}" method="post">
-            <label for="veterinario">Veterinario: </label>
-            <input type="text" id="veterinario" name="veterinario"><br><br>
-            <label for="causa">Causa/Motivo: </label>
-            <select id="causa" name="causa">
-                <option value=""></option>
-                <option th:each="ca:${causa}" th:value="${ca}" th:text="${ca}"></option>
-            </select>
-            <br><br>
-            <label for="descripcion">Descripción: </label><br>
-            <textarea rows="4" cols="60" id="descripcion" name="descripcion"></textarea><br><br>
-            <label for="fecha">Fecha Consulta: </label>
-            <input type="datetime-local" id="fecha" name="fecha"><br><br>
+        <form name="formhc" th:action="@{|/fichaperro/${FichaPerro.id}|}" th:object="${formHC}" method="post">
+
+            <div>
+                <label>Veterinario: </label>
+                <input type="text" th:field="*{veterinario}">
+            </div><br>
+
+            <div>
+                <label>Causa/Motivo: </label>
+                <select th:field="*{causa}">
+                    <option value=""></option>
+                    <option th:each="ca:${causas}" th:value="${ca}" th:text="${ca}"></option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label>Descripción: </label><br>
+                <textarea rows="4" cols="60" th:field="*{descripcion}"></textarea>
+            </div><br>
+            <div>
+                <label>Fecha Consulta: </label>
+                <input type="datetime-local" th:field="*{fecha}">
+            </div><br>
+
             <button>💾 Guardar</button>
 
             <button type="button">❌ Eliminar Consulta</button>

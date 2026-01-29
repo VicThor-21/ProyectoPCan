@@ -32,8 +32,7 @@ public class PerroServiceImpl implements PerroService {
     @Override
     public List<Perro>  obtenerPerro(String nombre, EstadoPerro estado) {
         log.info("[obtenerPerroPorNombre]");
-        log.debug("[nombre]: {}",nombre);
-        log.debug("[Estado:{}]", estado);
+        log.debug("[nombre:{}, Estado:{}]",nombre, estado);
 
         if ((nombre == null || nombre.trim().isEmpty()) &&
                 (estado == null || estado.toString().isEmpty()))

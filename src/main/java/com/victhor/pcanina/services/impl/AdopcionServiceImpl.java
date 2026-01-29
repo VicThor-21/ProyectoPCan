@@ -1,5 +1,6 @@
 package com.victhor.pcanina.services.impl;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class AdopcionServiceImpl implements AdopcionService {
     private AdopcionRepository adopcionRepository;
 
     @Override
-    public Adopcion insertarAdopcion(Date fecha, int estado, boolean donacion, Perro perro, Adoptante adoptante) {
+    public Adopcion insertarAdopcion(LocalDate fecha, int estado, boolean donacion, Perro perro, Adoptante adoptante) {
 
         Adopcion a=new Adopcion();
         a.setFechaAdopcion(fecha);

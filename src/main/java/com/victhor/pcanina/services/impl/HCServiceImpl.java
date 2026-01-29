@@ -18,19 +18,6 @@ public class HCServiceImpl implements HCService {
     private HCRepository hcRepo;
 
     @Override
-    public HistorialClinico insertarHC(CausaHC causa, String descripcion, LocalDateTime fecha, String veterinario, Perro perro) {
-
-        HistorialClinico hc=new HistorialClinico();
-        hc.setCausa(causa);
-        hc.setDescripcion(descripcion);
-        hc.setFecha(fecha);
-        hc.setVeterinario(veterinario);
-        hc.setPerro(perro);
-
-        return hcRepo.save(hc);
-    }
-
-    @Override
     public List<HistorialClinico> listadoHC() {
 
         return hcRepo.findAll();

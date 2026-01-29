@@ -1,6 +1,6 @@
 package com.victhor.pcanina.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +26,7 @@ public class Adopcion {
     @Column(name="adopcion_id")
     private int id;
     @Column(name="fecha_adopcion")
-    private Date fechaAdopcion;
+    private LocalDate fechaAdopcion;
     @Column(name="estado")
     private int estado;
     @Column(name="donacion")
