@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCan Info Adoptante</title>
+</head>
+<body>
+    <div>
+        <h1>Adoptantes</h1>
+    </div>
+    <div>
+        <form name="info_adoptante" action="/adoptante" method="get">
+            <h3><a href="/adminadoptante">➕ Añadir Adoptante</a></h3>
+            <label for="dni" th:text="#{dni}"></label>
+            <input type="dni" id="dni" name="dni">
+            <input type="submit" value="🔎 Buscar">
+        </form>
+    </div>
+</body>
+</html>
