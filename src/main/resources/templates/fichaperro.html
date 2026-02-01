@@ -13,7 +13,7 @@
     <div style="flex: 1; min-width: 250px;">
         <h2>Datos Generales</h2>
         <ul style="list-style: none; padding: 0; line-height: 1;">
-            <li><strong>ID:</strong> <span th:text="${FichaPerro.id}"></span></li>
+
             <li><strong>NOMBRE:</strong> <span th:text="${FichaPerro.nombre}"></span></li>
             <li><strong>RAZA:</strong> <span th:text="${FichaPerro.raza}"></span></li>
             <li><strong>EDAD:</strong> <span th:text="${FichaPerro.edad}"></span></li>
@@ -45,13 +45,19 @@
                 <td th:text="${HCPerro.descripcion}"></td>
                 <td th:text="${HCPerro.fecha}"></td>
                 <td th:text="${HCPerro.veterinario}"></td>
-                <td><a th:href="@{|/fichaperro/${FichaPerro.id}|}"><input type="button" value="Seleccionar"></a></td> </tr>
+                <td><a th:href="@{|/fichaperro/${FichaPerro.id}/${HCPerro.id}|}"><input type="button" value="✅ Seleccionar"></a></td>
+                <td><form th:action="@{|/fichaperro/${FichaPerro.id}/${HCPerro.id}|}" method="post">
+                    <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar este registro?')">❌ Eliminar Consulta
+                    </button>
+                    </form>
+                </td>
+            </tr>
             </tbody>
         </table><br><br><br>
 
         <h2>Consulta Clínica</h2>
         <form name="formhc" th:action="@{|/fichaperro/${FichaPerro.id}|}" th:object="${formHC}" method="post">
-
+            <input type="hidden" th:field="*{id}">
             <div>
                 <label>Veterinario: </label>
                 <input type="text" th:field="*{veterinario}">
@@ -76,8 +82,8 @@
 
             <button>💾 Guardar</button>
 
-            <button type="button">❌ Eliminar Consulta</button>
-            <input type="reset" value="⚪️ Limpiar Formulario">
+            <a th:href="@{|/fichaperro/${FichaPerro.id}|}">
+                <input type="button" value="⚪️ Limpiar Formulario"></a>
         </form><br><br>
 
     </div>

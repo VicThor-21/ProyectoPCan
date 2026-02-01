@@ -30,7 +30,6 @@ public class FormPerroController {
             Perro perroExistente=servicio.obtenerPerro(id);
             log.debug("[perro: {}]",perroExistente);
             model.addAttribute("perro", perroExistente);
-
         }else {
             model.addAttribute("perro", new Perro());
         }
@@ -46,7 +45,7 @@ public class FormPerroController {
 
         servicio.crearPerro(perro);
 
-        return "redirect:/perros";
+        return "redirect:/fichaperro/" + perro.getId();
     }
 
 

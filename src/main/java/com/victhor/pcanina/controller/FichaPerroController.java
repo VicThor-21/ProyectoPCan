@@ -1,33 +1,34 @@
 package com.victhor.pcanina.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.victhor.pcanina.common.CausaHC;
 import com.victhor.pcanina.entities.HistorialClinico;
 import com.victhor.pcanina.entities.Perro;
 import com.victhor.pcanina.repositories.HCRepository;
+import com.victhor.pcanina.services.HCService;
 import com.victhor.pcanina.services.PerroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping("/fichaperro")
+@RequestMapping("/fichaperro/{id}")
 public class FichaPerroController {
     @Autowired
     private PerroService perroService;
     @Autowired
     private HCRepository hcRepository;
+    @Autowired
+    private HCService hcService;
 
-    @GetMapping("/{id}")  // ruta en el navegador para volver a ver el perro pasado por id
-    public String fichaPerro(@PathVariable Integer id, Model model) {
+    @GetMapping({"","/{idHC}"})  // ruta en el navegador para volver a ver el perro pasado por id
+    public String fichaPerro(@PathVariable Integer id,@PathVariable (required = false) Integer idHC, Model model) {
         log.info("[fichaPerro]");
         log.debug("[id: {}]",id);
 
@@ -37,18 +38,21 @@ public class FichaPerroController {
 
         model.addAttribute("FichaPerro", perro);
         model.addAttribute("HC", listHC);
-        model.addAttribute("formHC", new HistorialClinico());
         model.addAttribute("causas", CausaHC.values());
-
+        if (idHC != null) {
+            log.debug("[idHC: {}]",idHC);
+            model.addAttribute("formHC", hcService.obtenerHC(idHC));
+        }else {
+            model.addAttribute("formHC", new HistorialClinico());
+        }
 
         return "fichaperro";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public String guardarHC(@PathVariable Integer id, HistorialClinico hc) {
         log.info("[guardarHC]");
 
-        hc.setId(0);
         Perro perro=perroService.obtenerPerro(id);
         hc.setPerro(perro);
 
@@ -58,15 +62,16 @@ public class FichaPerroController {
         return "redirect:/fichaperro/" + id;
     }
 
-/*	@GetMapping("/{id}")
-	@ModelAttribute("HC")
-	public List<HistorialClinico> listadoHC(@PathVariable Integer id) {
-		log.info("Inicio: fichaHistorialClinico");
+    @PostMapping("/{idHC}")
+    public String eliminarHC(@PathVariable Integer idHC) {
+        log.info("[eliminarHC]");
 
-		List<HistorialClinico> listHC=hcRepository.findByPerro(perroService.obtenerPerro(id));
+        HistorialClinico hc=hcService.obtenerHC(idHC);
+        int idPerro=hc.getPerro().getId();
+        log.debug("[" + hc.toString() + "]" );
+        hcRepository.delete(hc);
 
-		return listHC;
-	} */
-
+        return "redirect:/fichaperro/" + idPerro;
+    }
 
 }
