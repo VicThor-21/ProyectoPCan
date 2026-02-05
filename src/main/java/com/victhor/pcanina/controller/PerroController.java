@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping("/perros")
-public class PerrosController {
+public class PerroController {
 
     @Autowired
     private PerroService perroService;

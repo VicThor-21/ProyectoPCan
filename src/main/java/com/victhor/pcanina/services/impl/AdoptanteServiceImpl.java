@@ -5,44 +5,43 @@ import java.util.List;
 import com.victhor.pcanina.entities.Adoptante;
 import com.victhor.pcanina.repositories.AdoptanteRepository;
 import com.victhor.pcanina.services.AdoptanteService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class AdoptanteServiceImpl implements AdoptanteService {
 
     @Autowired
-    private AdoptanteRepository adoptanteRepository;
+    private AdoptanteRepository repository;
 
     @Override
-    public Adoptante insertarAdoptante(String nombre, String apellidos, String dni, String telefono, String email) {
+    public List<Adoptante> filtrarDniYNombre(String dni, String nombre) {
+        log.info("[filtrarDniYNombre]");
+        log.debug("[dni:{}, nombre:{}]", dni, nombre);
 
-        Adoptante a=new Adoptante();
-        a.setNombre(nombre);
-        a.setApellidos(apellidos);
-        a.setDni(dni);
-        a.setTelefono(telefono);
-        a.setEmail(email);
-
-        return adoptanteRepository.save(a);
+        return repository.findByDniAndNombre(dni, nombre);
     }
 
     @Override
     public List<Adoptante> listadoAdoptantes() {
-
-        return adoptanteRepository.findAll();
+        log.info("[listadoAdoptantes]");
+        return repository.findAll();
     }
 
     @Override
-    public Adoptante obtenerAdoptante(int id) {
-
-        return adoptanteRepository.findById(id).orElse(null);
+    public List<Adoptante> buscarPorDni(String dni) {
+        log.info("[buscarPorDni]");
+        log.debug("[dni:{}]", dni);
+        return repository.findByDni(dni);
     }
 
     @Override
-    public Adoptante obtenerAdoptante(String nombre) {
-
-        return adoptanteRepository.findByNombre(nombre).orElse(null);
+    public List<Adoptante> buscarPorNombre(String nombre) {
+        log.info("[buscarPorNombre]");
+        log.debug("[nombre:{}]", nombre);
+        return repository.findByNombre(nombre);
     }
 
 }

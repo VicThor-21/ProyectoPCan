@@ -11,11 +11,40 @@
     </div>
     <div>
         <form name="info_adoptante" action="/adoptante" method="get">
-            <h3><a href="/adminadoptante">➕ Añadir Adoptante</a></h3>
+            <h3><a th:href="@{/adminadoptante}">➕ Añadir Adoptante</a></h3>
             <label for="dni" th:text="#{dni}"></label>
-            <input type="dni" id="dni" name="dni">
+            <input type="text" id="dni" name="dni">
+            <br>
+            <label for="nombre" th:text="#{nombre}"></label>
+            <input type="text" id="nombre" name="nombre">
             <input type="submit" value="🔎 Buscar">
+            <input type="submit" value="🔎 Ver Todos">
         </form>
+    </div>
+    <br>
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>DNI</th>
+                <th>NOMBRE COMPLETO</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>FECHA DE REGISTRO</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${listaAdoptantes}">
+                <td th:text="${person.dni}"></td>
+                <td th:text="${person.nombre}+ ' ' +${person.apellidos}"></td>
+                <td th:text="${person.telefono}"></td>
+                <td th:text="${person.email}"></td>
+                <td th:text="${person.fechaRegistro}"></td>
+                <td><a >Modificar</a></td>
+                <td><a >Adopción</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

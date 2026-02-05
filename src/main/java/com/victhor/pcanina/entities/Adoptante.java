@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="ADOPTANTE")
 @Data
@@ -31,5 +33,7 @@ public class Adoptante {
     private String telefono;
     @Column(name="email")
     private String email;
+    @Column(name="fecharegistro")
+    private LocalDate fechaRegistro;
 
 }
