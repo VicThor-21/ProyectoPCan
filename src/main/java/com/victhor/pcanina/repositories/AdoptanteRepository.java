@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AdoptanteRepository extends JpaRepository<Adoptante, Integer> {
-
     @Query("SELECT a FROM Adoptante a WHERE a.dni=:dni AND a.nombre=:nombre")
     public List<Adoptante> findByDniAndNombre(@Param("dni") String dni, @Param("nombre") String nombre);
     public List<Adoptante> findByNombre(String nombre);
     public List<Adoptante> findByDni(String dni);
-
+    public Adoptante findAllById(Integer id);
 }

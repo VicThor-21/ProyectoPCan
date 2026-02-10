@@ -11,7 +11,7 @@
     </div>
     <div>
         <form name="info_adoptante" action="/adoptante" method="get">
-            <h3><a th:href="@{/adminadoptante}">➕ Añadir Adoptante</a></h3>
+            <h3><a th:href="@{/formadoptante}">➕ Añadir Adoptante</a></h3>
             <label for="dni" th:text="#{dni}"></label>
             <input type="text" id="dni" name="dni">
             <br>
@@ -40,7 +40,7 @@
                 <td th:text="${person.telefono}"></td>
                 <td th:text="${person.email}"></td>
                 <td th:text="${person.fechaRegistro}"></td>
-                <td><a >Modificar</a></td>
+                <td><a th:href="@{|/formadoptante/${person.id}|}"><input type="button" value="Modificar"></a></td>
                 <td><a >Adopción</a></td>
             </tr>
             </tbody>

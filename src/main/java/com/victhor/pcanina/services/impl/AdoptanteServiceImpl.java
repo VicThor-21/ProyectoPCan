@@ -44,4 +44,17 @@ public class AdoptanteServiceImpl implements AdoptanteService {
         return repository.findByNombre(nombre);
     }
 
+    @Override
+    public Adoptante obtenerAdoptante(Integer id) {
+        log.info("[obtenerAdoptante: {}]", id);
+
+        return repository.findAllById(id);
+    }
+
+    @Override
+    public void crearAdoptante(Adoptante adoptante) {
+        log.info("[crearAdoptante: {}]", adoptante);
+        repository.save(adoptante);
+    }
+
 }

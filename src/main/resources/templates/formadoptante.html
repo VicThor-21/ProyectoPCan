@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCan Formulario Adoptante</title>
+</head>
+<body>
+<div style="
+        border: 2px solid #333;
+        padding: 20px;
+        border-radius: 10px;
+        width: fit-content;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
+
+    <h2>Formulario Adoptante</h2>
+
+    <form name="formadoptante" th:action="@{/formadoptante}" th:object="${adoptante}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div>
+            <label>DNI: </label>
+            <input type="text" th:field="*{dni}">
+        </div><br>
+        <div>
+            <label>Nombre: </label>
+            <input type="text" th:field="*{nombre}">
+        </div><br>
+
+        <div>
+            <label>Apellidos: </label>
+            <input type="text" th:field="*{apellidos}">
+        </div><br>
+        <div>
+            <label>Teléfono: </label>
+            <input type="tel" th:field="*{telefono}">
+        </div><br>
+        <div>
+            <label>Email: </label>
+            <input type="email" th:field="*{email}">
+        </div><br>
+        <div>
+            <label>Fecha Registro: </label>
+            <input type="date" th:field="*{fechaRegistro}">
+        </div><br>
+
+        <button>💾 Guardar</button>
+
+        <input type="reset" value="⚪️ Limpiar Formulario">
+    </form>
+</div>
+<br>
+<a th:href="@{/adoptante}">
+    <input type="button" value="⬅️ Atrás">
+</a>
+</body>
+</html>
