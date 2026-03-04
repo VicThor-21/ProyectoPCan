@@ -1,11 +1,5 @@
 package com.victhor.pcanina.controller;
 
-import com.victhor.pcanina.common.EstadoPerro;
-import com.victhor.pcanina.entities.Adoptante;
-import com.victhor.pcanina.entities.Perro;
-import com.victhor.pcanina.services.AdoptanteService;
-import com.victhor.pcanina.services.PerroService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.victhor.pcanina.entities.Adoptante;
+import com.victhor.pcanina.services.AdoptanteService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j

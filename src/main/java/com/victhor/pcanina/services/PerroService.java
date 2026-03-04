@@ -1,9 +1,9 @@
 package com.victhor.pcanina.services;
 
+import java.util.List;
+
 import com.victhor.pcanina.common.EstadoPerro;
 import com.victhor.pcanina.entities.Perro;
-
-import java.util.List;
 
 public interface PerroService {
     public List<Perro> listadoPerros();

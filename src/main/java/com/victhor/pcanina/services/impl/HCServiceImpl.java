@@ -1,11 +1,7 @@
 package com.victhor.pcanina.services.impl;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import com.victhor.pcanina.common.CausaHC;
 import com.victhor.pcanina.entities.HistorialClinico;
-import com.victhor.pcanina.entities.Perro;
 import com.victhor.pcanina.repositories.HCRepository;
 import com.victhor.pcanina.services.HCService;
 import org.springframework.beans.factory.annotation.Autowired;

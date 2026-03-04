@@ -1,7 +1,6 @@
 package com.victhor.pcanina.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.victhor.pcanina.common.CausaHC;
 import com.victhor.pcanina.entities.HistorialClinico;
